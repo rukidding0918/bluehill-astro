@@ -1,0 +1,31 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const updates = await getCollection('updates');
+  return updates.map(entry => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+
+const title = entry.data.title || "청구경희한의원";
+const description = entry.data.description || "청구경희한의원에 오신 것을 환영합니다";
+---
+
+<BaseLayout title={title} description={description}>
+  <article>
+    <header>
+      <h1>{title}</h1>
+      <p class="description">{description}</p>
+      <time class="date">{new Date(entry.data.date).toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+    </header>
+    <div class="content">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>

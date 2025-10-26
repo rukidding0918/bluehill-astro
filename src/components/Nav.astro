@@ -1,0 +1,22 @@
+---
+// 현재 페이지 경로를 받아서 active 상태 표시
+const currentPath = Astro.url.pathname;
+---
+
+<nav class="pure-menu pure-menu-horizontal">
+  <a href="/" class="pure-menu-heading pure-menu-link">청구경희한의원</a>
+  <ul class="pure-menu-list">
+    <li class="pure-menu-item">
+      <a href="/" class:list={["pure-menu-link", { "pure-menu-selected": currentPath === "/" }]}>홈</a>
+    </li>
+    <li class="pure-menu-item">
+      <a href="/about" class:list={["pure-menu-link", { "pure-menu-selected": currentPath === "/about" }]}>소개</a>
+    </li>
+    <li class="pure-menu-item">
+      <a href="/updates" class:list={["pure-menu-link", { "pure-menu-selected": currentPath.startsWith("/updates") }]}>공지사항</a>
+    </li>
+    <li class="pure-menu-item">
+      <a href="/contact" class:list={["pure-menu-link", { "pure-menu-selected": currentPath === "/contact" }]}>연락처</a>
+    </li>
+  </ul>
+</nav>

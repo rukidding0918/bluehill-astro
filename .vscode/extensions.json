@@ -1,0 +1,7 @@
+{
+  "recommendations": [
+    "astro-build.astro-vscode",
+    "upstash.context7-mcp"
+  ],
+  "unwantedRecommendations": []
+}

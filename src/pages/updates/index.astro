@@ -1,0 +1,36 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// updates 컬렉션의 모든 항목 가져오기
+const updates = await getCollection('updates');
+
+// 날짜순으로 정렬 (최신순)
+const sortedUpdates = updates.sort((a, b) => {
+  const dateA = new Date(a.data.date);
+  const dateB = new Date(b.data.date);
+  return dateB.getTime() - dateA.getTime();
+});
+---
+
+<BaseLayout title="공지사항" description="최신 소식과 업데이트를 확인하세요">
+  <div class="updates-list">
+    {sortedUpdates.length === 0 ? (
+      <p>아직 공지사항이 없습니다.</p>
+    ) : (
+      <ul class="pure-menu-list">
+        {sortedUpdates.map((update) => (
+          <li class="update-item">
+            <a href={`/updates/${update.slug}`} class="update-link">
+              <h2>{update.data.title}</h2>
+              {update.data.description && (
+                <p class="update-description">{update.data.description}</p>
+              )}
+              <time class="update-date">{new Date(update.data.date).toLocaleDateString('ko-KR')}</time>
+            </a>
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+</BaseLayout>

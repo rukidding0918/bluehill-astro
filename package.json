@@ -1,0 +1,21 @@
+{
+  "name": "bluehill-astro",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "predeploy": "NODE_ENV=production astro build",
+    "deploy": "gh-pages -d dist"
+  },
+  "homepage": "https://rukidding0918.github.io/bluehill-astro/",
+  "dependencies": {
+    "@astrojs/mdx": "^4.3.8",
+    "astro": "^5.15.1"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
+  }
+}
