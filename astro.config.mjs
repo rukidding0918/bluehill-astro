@@ -7,5 +7,6 @@ import mdx from '@astrojs/mdx';
 export default defineConfig({
   site: 'https://rukidding0918.github.io',
   base: process.env.NODE_ENV === 'production' ? '/bluehill-astro' : '/',
-  integrations: [mdx()]
+  integrations: [mdx()],
+  outDir: './docs'
 });
